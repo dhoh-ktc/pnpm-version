@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "kt-next-console",
   "version": "0.0.1",
   "type": "module",
   "private": true,
@@ -20,11 +20,12 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:^",
+    "@repo/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@repo/eslint-config": "workspace:^",
-    "@repo/typescript-config": "workspace:*",
+    "swagger-typescript-api": "^13.0.28",
     "typescript": "^5.7.3"
   }
 }

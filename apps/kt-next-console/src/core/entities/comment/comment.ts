@@ -1,4 +1,4 @@
-import { IComment, ICommentData } from "./";
+import { IComment, ICommentData } from "./index";
 // import { getRandomBoolean, getRandomDate } from '@/utils/faker'
 
 export class Comment implements IComment {

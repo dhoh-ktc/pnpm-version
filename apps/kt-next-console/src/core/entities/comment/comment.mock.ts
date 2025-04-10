@@ -1,4 +1,4 @@
-import { Comment, IComment, ICommentData } from "./";
+import { Comment, IComment, ICommentData } from "./index";
 
 export const mockCommentsData = (): ICommentData[] => [
   {
