@@ -7,7 +7,6 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-
     "console": "pnpm --filter ktc-console",
     "dbaas": "pnpm --filter ktc-dbaas",
     "ui": "pnpm --filter ui",
