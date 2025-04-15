@@ -1,4 +1,4 @@
-import { ICreationInformation, ICreationInformationData } from '@ktc-console/entities/common/creation-information/types'
+import { ICreationInformation, ICreationInformationData } from '@ktc-console/entities/common/creation-information'
 
 export interface IProjectData extends ICreationInformationData {
   id?: string // 프로젝트 ID

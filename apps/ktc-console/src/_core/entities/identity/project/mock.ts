@@ -1,7 +1,7 @@
-import { IProjectData } from '@ktc-console/entities/identity/project/types'
+import { IProjectData } from '@ktc-console/entities/identity/project'
 
 // 유효한 IProjectData mock 데이터
-const validProjectData: IProjectData = {
+export const validProjectData: IProjectData = {
   id: 'project123',
   name: '프로젝트 이름',
   ownedBy: 'owner123',
@@ -13,7 +13,7 @@ const validProjectData: IProjectData = {
 }
 
 // 유효하지 않은 IProjectData mock 데이터
-const invalidProjectData: IProjectData = {
+export const invalidProjectData1: IProjectData = {
   id: undefined,
   name: '',
   ownedBy: undefined,

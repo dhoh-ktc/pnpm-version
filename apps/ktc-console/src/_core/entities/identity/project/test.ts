@@ -1,32 +1,10 @@
 import { Project } from './model'
-import { IProjectData } from '@ktc-console/entities/identity/project/types'
-
-jest.mock('@ktc-console/entities/common/creation-information/model', () => {
-  return {
-    CreationInformation: jest.fn().mockImplementation((data) => ({
-      createdBy: data.createdBy || 'defaultCreatedBy',
-      createdAt: data.createdAt || 'defaultCreatedAt',
-      updatedAt: data.updatedAt || 'defaultUpdatedAt',
-      updatedBy: data.updatedBy || 'defaultUpdatedBy',
-    })),
-  }
-})
-
+import { invalidProjectData1, validProjectData } from '@ktc-console/entities/identity/project'
 
 describe('Project', () => {
   it('유효한 데이터를 사용하여 Project 인스턴스를 생성해야 합니다.', () => {
-    const mockData: IProjectData = {
-      id: 'project123',
-      name: 'Test Project',
-      ownedBy: 'owner123',
-      description: 'Test description',
-      createdBy: 'user123',
-      createdAt: '2025-04-15T07:57:13.622Z',
-      updatedAt: '2025-04-16T08:30:00.000Z',
-      updatedBy: 'admin456',
-    }
 
-    const project = new Project(mockData)
+    const project = new Project(validProjectData)
 
     expect(project.id).toBe('project123')
     expect(project.name).toBe('Test Project')
@@ -39,9 +17,10 @@ describe('Project', () => {
   })
 
   it('데이터가 누락된 경우 기본값으로 Project 인스턴스를 생성해야 합니다.', () => {
-    const mockData: Partial<IProjectData> = {}
+    // const mockData: Partial<IProjectData> = {}
+    // const project = new Project(mockData as IProjectData)
 
-    const project = new Project(mockData as IProjectData)
+    const project = new Project(invalidProjectData1)
 
     expect(project.id).toBe('')
     expect(project.name).toBe('')

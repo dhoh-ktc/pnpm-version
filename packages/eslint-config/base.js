@@ -3,6 +3,7 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 import turboPlugin from 'eslint-plugin-turbo'
 import tseslint from 'typescript-eslint'
 import onlyWarn from 'eslint-plugin-only-warn'
+import stylisticJs from '@stylistic/eslint-plugin-js'
 
 /**
  * A shared ESLint configuration for the repository.
@@ -16,10 +17,11 @@ export const config = [
   {
     plugins: {
       turbo: turboPlugin,
+      '@stylistic/js': stylisticJs,
     },
     rules: {
       'turbo/no-undeclared-env-vars': 'warn',
-      'no-multiple-empty-lines': ['error', { max: 1 }],
+      '@stylistic/js/no-multiple-empty-lines': 'error',
     },
   },
   {
