@@ -1,11 +1,15 @@
-declare interface IPaginationRequest {
-  _page: number
-  _limit: number
+declare interface IPaginationRequest<R, T> {
+  page: number
+  limit: number
+  filter?: R // 검색 조건이 있을 때 사용
+  search?: T
 }
 
-// 검색 조건이 있을 때 사용
-// declare interface IPaginationRequest<R> {
-//   page: number
-//   size: number
-//   criteria: R
-// }
+declare interface IPage<R> {
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+  size: number
+  content: R
+}
