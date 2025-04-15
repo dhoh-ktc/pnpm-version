@@ -1,16 +1,12 @@
 import { CreationInformation } from './model'
-import { ICreationInformationData } from './types'
+import {
+  invalidMockCreationInformationData2,
+  mockCreationInformationData,
+} from '@ktc-console/entities/common/creation-information/mock'
 
 describe('CreationInformation', () => {
-  it('유효한 데이터로 인스턴스를 생성해야 한다', () => {
-    const validData: ICreationInformationData = {
-      createdAt: '2025-04-15T07:57:13.622Z',
-      createdBy: 'user123',
-      updatedAt: '2025-04-16T08:30:00.000Z',
-      updatedBy: 'admin456',
-    }
-
-    const instance = new CreationInformation(validData)
+  it('유효한 데이터일 경우 정상적으로 인스턴스를 생성합니다.', () => {
+    const instance = new CreationInformation(mockCreationInformationData)
 
     expect(instance.createdAt).toEqual(['2025', '04', '15', '화', '16', '57', '13'])
     expect(instance.createdBy).toBe('user123')
@@ -18,19 +14,23 @@ describe('CreationInformation', () => {
     expect(instance.updatedBy).toBe('admin456')
   })
 
-  it('잘못된 데이터로 인스턴스를 생성할 때 빈 값으로 초기화해야 한다', () => {
-    const invalidData: ICreationInformationData = {
-      createdAt: undefined,
-      createdBy: undefined,
-      updatedAt: undefined,
-      updatedBy: undefined,
-    }
-
-    const instance = new CreationInformation(invalidData)
-
+  it('createdAt이 없는 경우 빈 배열로 값을 초기화 합니다.', () => {
+    const instance = new CreationInformation(invalidMockCreationInformationData2)
     expect(instance.createdAt).toEqual([])
-    expect(instance.createdBy).toBe('')
+  })
+
+  it('updateAt이 없는 경우 빈 배열로 값을 초기화 합니다.', () => {
+    const instance = new CreationInformation(invalidMockCreationInformationData2)
     expect(instance.updatedAt).toEqual([])
-    expect(instance.updatedBy).toBe('')
+  })
+
+  it('updatedBy이 없는 경우 빈 문자열로 값을 초기화 합니다.', () => {
+    const instance = new CreationInformation(invalidMockCreationInformationData2)
+    expect(instance.updatedBy).toEqual('')
+  })
+
+  it('createdBy이 없는 경우 빈 문자열로 값을 초기화 합니다.', () => {
+    const instance = new CreationInformation(invalidMockCreationInformationData2)
+    expect(instance.createdBy).toEqual('')
   })
 })
