@@ -9,11 +9,12 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "swagger-api": "swagger-typescript-api generate --path https://petstore.swagger.io/v2/swagger.json -o ./src/entities/swagger --modular --axios --silent",
+    "swagger-api": "swagger-typescript-api generate --path http://next-identity.svc-dev.14-63-204-35.nip.io/v3/api-docs -o ./src/_core/entities/identity/swagger --modular --axios --silent",
     "test": "jest"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "next": "^15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
