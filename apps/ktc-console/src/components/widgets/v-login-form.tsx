@@ -12,9 +12,9 @@ export interface VLoginFormProps {
 
 export function VLoginForm({
                              className,
-
+                             vprops,
                              ...props
-                           }: React.ComponentPropsWithoutRef<'div'> & VLoginFormProps) {
+                           }: React.ComponentPropsWithoutRef<'div'> & { vprops: VLoginFormProps }) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -22,7 +22,7 @@ export function VLoginForm({
           <CardTitle className="text-2xl">Root 로그인</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={props.handleSubmit}>
+          <form onSubmit={vprops.handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">이메일</Label>
@@ -45,7 +45,7 @@ export function VLoginForm({
             </div>
             <div className="mt-4 text-center text-sm">
               아직 계정이 없으신가요?{' '}
-              <a href="#" className="underline underline-offset-4" onClick={props.handleSignUp}>
+              <a href="#" className="underline underline-offset-4" onClick={vprops.handleSignUp}>
                 회원가입
               </a>
             </div>

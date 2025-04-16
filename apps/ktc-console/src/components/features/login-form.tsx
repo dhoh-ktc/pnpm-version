@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function LoginForm() {
   const router = useRouter()
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('로그인 성공')
@@ -21,5 +21,5 @@ export default function LoginForm() {
     handleSignUp,
   }
 
-  return <VLoginForm {...props} />
+  return <VLoginForm vprops={props} />
 }
