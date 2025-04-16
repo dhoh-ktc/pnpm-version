@@ -1,8 +1,6 @@
 import { CreationInformation } from './model'
-import {
-  invalidMockCreationInformationData2,
-  mockCreationInformationData,
-} from '@ktc-console/entities/common/creation-information/mock'
+import { invalidMockCreationInformationData2, mockCreationInformationData } from './mock'
+
 
 describe('CreationInformation', () => {
   it('유효한 데이터일 경우 정상적으로 인스턴스를 생성합니다.', () => {

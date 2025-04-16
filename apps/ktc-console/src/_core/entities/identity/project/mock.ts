@@ -1,4 +1,4 @@
-import { IProjectData } from '@ktc-console/entities/identity/project'
+import { IProjectData } from '@/_core/entities/identity/project'
 
 // 유효한 IProjectData mock 데이터
 export const validProjectData: IProjectData = {

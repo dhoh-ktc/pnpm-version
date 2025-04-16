@@ -1,0 +1,30 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: next-front-httproute    ## httproute name
+  namespace: ns-front           ## namespace name
+spec:
+  hostnames:
+    - next-front-test.svc-dev.14-63-204-35.nip.io  ## application domain, *.svc-dev.14-63-204-35.nip.io 형태.
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: gateway-svcdev             ## Gateway name, "gateway-svcdev" 사용
+      namespace: nginx-gateway         ## Gateway namespace, "nginx-gateway" 사용
+      sectionName: http-nip-io         ## Gateway listener name, http-nip-io or https-nip-io 사용
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: gateway-svcdev
+      namespace: nginx-gateway
+      sectionName: https-nip-io
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service                  ## backend 대상의 종류, "Service" 사용
+          name: next-front               ## routing 대상 backend service 지정
+          port: 3000                     ## routing 대상 backend service port 지정
+          weight: 1                      ## 여러 backend가 있을 경우 트래픽 가중치 (1이면 균등 분배)
+      matches:
+        - path:
+            type: PathPrefix             ## 요청 경로 매칭 타입 (접두사 기준 매칭)
+            value: /                     ## 모든 요청("/")을 처리 (전체 트래픽이 backend로 전달됨)

@@ -1,5 +1,5 @@
 import { Project } from './model'
-import { invalidProjectData1, validProjectData } from '@ktc-console/entities/identity/project'
+import { invalidProjectData1, validProjectData } from '@/_core/entities/identity/project'
 
 describe('Project', () => {
   it('유효한 데이터를 사용하여 Project 인스턴스를 생성해야 합니다.', () => {
@@ -7,12 +7,12 @@ describe('Project', () => {
     const project = new Project(validProjectData)
 
     expect(project.id).toBe('project123')
-    expect(project.name).toBe('Test Project')
+    expect(project.name).toBe('프로젝트 이름')
     expect(project.ownedBy).toBe('owner123')
-    expect(project.description).toBe('Test description')
+    expect(project.description).toBe('이것은 유효한 프로젝트 데이터입니다.')
     expect(project.createdBy).toBe('user123')
-    expect(project.createdAt).toBe('2025-04-15T07:57:13.622Z')
-    expect(project.updatedAt).toBe('2025-04-16T08:30:00.000Z')
+    expect(project.createdAt).toEqual(["2025", "04", "15", "화", "16", "57", "13"])
+    expect(project.updatedAt).toEqual(["2025", "04", "16", "수", "17", "30", "00"])
     expect(project.updatedBy).toBe('admin456')
   })
 
@@ -26,9 +26,9 @@ describe('Project', () => {
     expect(project.name).toBe('')
     expect(project.ownedBy).toBe('')
     expect(project.description).toBe('')
-    expect(project.createdBy).toBe('defaultCreatedBy')
-    expect(project.createdAt).toBe('defaultCreatedAt')
-    expect(project.updatedAt).toBe('defaultUpdatedAt')
-    expect(project.updatedBy).toBe('defaultUpdatedBy')
+    expect(project.createdBy).toBe('')
+    expect(project.createdAt).toEqual([])
+    expect(project.updatedAt).toEqual([])
+    expect(project.updatedBy).toBe('')
   })
 })

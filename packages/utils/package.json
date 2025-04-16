@@ -1,22 +1,26 @@
 {
   "name": "@repo/utils",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@repo/config-eslint": "workspace:*",
+    "@repo/config-typescript": "workspace:*"
+  },
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
-  },
-  "dependencies": {
-    "typescript": "5.8.2"
-  },
-  "publishConfig": {
-    "access": "public"
+  "packageManager": "pnpm@10.4.1",
+  "exports": {
+    "./*": "./src/*.ts"
   }
 }

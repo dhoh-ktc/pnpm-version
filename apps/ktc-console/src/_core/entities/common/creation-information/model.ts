@@ -1,5 +1,6 @@
 import { ICreationInformation, ICreationInformationData } from './types'
-import { DateUtil } from '@repo/utils/src/date-util'
+import { DateUtil } from '@repo/utils/date-util'
+
 
 export class CreationInformation implements ICreationInformation {
 

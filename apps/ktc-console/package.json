@@ -1,35 +1,44 @@
 {
   "name": "ktc-console",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3000",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit",
-    "swagger-api": "swagger-typescript-api generate --path http://next-identity.svc-dev.14-63-204-35.nip.io/v3/api-docs -o ./src/_core/entities/identity/swagger --modular --axios --silent",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc --noEmit",
+    "swagger-api": "swagger-typescript-api generate --path https://petstore.swagger.io/v2/swagger.json -o ./test --modular --axios --silent",
     "test": "jest"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "next": "^15.2.1",
+    "axios": "^1.8.4",
+    "lucide-react": "^0.475.0",
+    "next": "^15.2.0",
+    "next-auth": "^4.24.11",
+    "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/config-eslint": "workspace:^",
+    "@repo/config-typescript": "workspace:*",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.13.10",
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4",
-    "eslint": "^9.22.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "jest": "^29.7.0",
-    "swagger-typescript-api": "^13.1.1",
+    "jest-environment-jsdom": "^29.7.0",
+    "swagger-typescript-api": "^13.0.28",
     "ts-jest": "^29.3.2",
-    "typescript": "5.8.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }

@@ -16,7 +16,7 @@ export class DateUtil {
     return [
       date.getFullYear().toString(), // 연도
       (date.getMonth() + 1).toString().padStart(2, '0'), // 월 (0부터 시작하므로 +1)
-      date.getDate().toString(), // 일
+      date.getDate().toString().padStart(2, '0'), // 일
       dayOfWeek ?? '', // 요일
       date.getHours().toString().padStart(2, '0'), // 시
       date.getMinutes().toString().padStart(2, '0'), // 분

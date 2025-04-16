@@ -1,5 +1,5 @@
-import { IProject, IProjectData } from '@ktc-console/entities/identity/project'
-import { CreationInformation } from '@ktc-console/entities/common/creation-information'
+import { IProject, IProjectData } from './types'
+import { CreationInformation } from '@/_core/entities/common/creation-information'
 
 export class Project implements IProject {
 
