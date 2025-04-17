@@ -6,8 +6,8 @@ import { Label } from '@repo/ui/components/widgets/label'
 import React from 'react'
 
 export interface VLoginFormProps {
-  errorMessages: {
-    email: string
+  errorMsg: {
+    loginId: string
     password: string
   }
   // TODO: {디자인시스템} 디자인시스템 적용한다면, 일일히 interface 안 만들고 이 부분에서 zod 의 RegisterOptions 타입을 그대로 사용해도 될듯.
@@ -32,9 +32,6 @@ export default function VLoginForm({
   vprops,
   ...props
 }: React.ComponentPropsWithoutRef<'div'> & { vprops: VLoginFormProps }) {
-  console.log(vprops.errorMessages.email)
-  console.log(vprops.errorMessages.password)
-
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
