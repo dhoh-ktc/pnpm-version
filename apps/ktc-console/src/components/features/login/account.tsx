@@ -7,9 +7,11 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   LOGIN_ACCOUNT_KEY,
-  loginWithAccountSchema,
-  ZLoginWithAccount,
+  ZLoginAccountInput,
+  ZLoginAccountSchema,
 } from '@/components/features/login/schemas'
+import { signIn } from 'next-auth/react'
+import { LOGIN_TYPE } from '@/_core/entities/identity/login'
 
 export default function LoginAccount() {
   const router = useRouter()
@@ -19,13 +21,27 @@ export default function LoginAccount() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ZLoginWithAccount>({
-    resolver: zodResolver(loginWithAccountSchema),
+  } = useForm<ZLoginAccountInput>({
+    resolver: zodResolver(ZLoginAccountSchema),
     mode: 'onSubmit',
     shouldFocusError: true,
   })
 
-  const onSubmit: SubmitHandler<ZLoginWithAccount> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<ZLoginAccountInput> = (data) => {
+    signIn('loginCredentials', {
+      loginType: LOGIN_TYPE.ACCOUNT,
+      loginId: data.loginId,
+      password: data.password,
+      clientId: 'console',
+      redirect: false,
+    }).then((res) => {
+      if (res && res.ok) {
+        router.push('/')
+      } else {
+        alert(res?.error)
+      }
+    })
+  }
 
   const props: VLoginFormProps = {
     loginId: register(LOGIN_ACCOUNT_KEY.LOGIN_ID),

@@ -13,18 +13,18 @@ export async function middleware(request: NextRequest) {
   // const refreshToken = request.cookies.get('refreshToken' as never)?.value
 
   // 세션 토큰 만료 시, /signin 리다이렉트
-  // if (!sessionToken && pathname !== '/signin') {
-  //   return NextResponse.redirect(new URL('/signin', request.url))
-  // }
+  if (!sessionToken && pathname !== '/signin') {
+    return NextResponse.redirect(new URL('/signin', request.url))
+  }
 
   // root 경로 접근 시, 세션 토큰 여부에 따라 리다이렉트 처리
-  // if (pathname === '/') {
-  //   if (sessionToken) {
-  //     return NextResponse.redirect(new URL('/dashboard', request.url))
-  //   } else {
-  //     return NextResponse.redirect(new URL('/signin', request.url))
-  //   }
-  // }
+  if (pathname === '/') {
+    if (sessionToken) {
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    } else {
+      return NextResponse.redirect(new URL('/signin', request.url))
+    }
+  }
 
   // 인증 상태에서 /signin 접근 시, / 강제 라우팅
   // if (pathname === '/signin' && sessionToken) {

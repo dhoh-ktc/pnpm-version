@@ -7,9 +7,9 @@ import { PanelLeftIcon } from 'lucide-react'
 
 import { useIsMobile } from '@repo/ui/hooks/use-mobile'
 import { cn } from '@repo/ui/lib/utils'
-import { Button } from '@repo/ui/components/actions/button.js'
-import { Input } from '@repo/ui/components/form/input.js'
-import { Separator } from '@repo/ui/components/layouts/separator.js'
+import { Button } from '@repo/ui/components/actions/button'
+import { Input } from '@repo/ui/components/form/input'
+import { Separator } from '@repo/ui/components/layouts/separator'
 import {
   Sheet,
   SheetContent,
@@ -17,7 +17,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@repo/ui/components/sheet'
-import { Skeleton } from '@repo/ui/components/loading/skeleton.js'
+import { Skeleton } from '@repo/ui/components/loading/skeleton'
 import {
   Tooltip,
   TooltipContent,
