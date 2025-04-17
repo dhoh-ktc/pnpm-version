@@ -3,7 +3,6 @@ import { Button } from '@repo/ui/components/actions/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/ui/components/layouts/card'
 import { Input } from '@repo/ui/components/form/input'
 import { Label } from '@repo/ui/components/widgets/label'
-import React from 'react'
 
 export interface VLoginFormProps {
   errorMsg: {
