@@ -11,7 +11,7 @@ export interface VLoginFormProps {
     password: string
   }
   // TODO: {디자인시스템} 디자인시스템 적용한다면, 일일히 interface 안 만들고 이 부분에서 zod 의 RegisterOptions 타입을 그대로 사용해도 될듯.
-  email: {
+  loginId: {
     ref: React.Ref<HTMLInputElement>
     name: string
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -32,6 +32,9 @@ export default function VLoginForm({
   vprops,
   ...props
 }: React.ComponentPropsWithoutRef<'div'> & { vprops: VLoginFormProps }) {
+  console.log(vprops.errorMessages.email)
+  console.log(vprops.errorMessages.password)
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -42,14 +45,14 @@ export default function VLoginForm({
           <form onSubmit={vprops.handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">이메일</Label>
-                <Input {...vprops.email} type="email" placeholder="m@example.com" required />
+                <Label htmlFor="loginId">이메일</Label>
+                <Input id="loginId" {...vprops.loginId} placeholder="m@example.com" required />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">비밀번호</Label>
                 </div>
-                <Input {...vprops.password} type="password" required />
+                <Input id="password" {...vprops.password} type="password" required />
               </div>
               <Button type="submit" className="w-full">
                 로그인

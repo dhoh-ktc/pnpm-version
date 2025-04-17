@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import '@repo/ui/styles/globals.css'
 import { Providers } from '@/components/providers'
+import React from 'react'
 
 const fontSans = Geist({
   subsets: ['latin'],
@@ -14,17 +15,15 @@ const fontMono = Geist_Mono({
 })
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
-    <body
-      className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased h-full`}
-    >
-    <Providers>{children}</Providers>
-    </body>
+      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased h-full`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
