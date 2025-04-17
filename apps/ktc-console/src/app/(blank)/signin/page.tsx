@@ -1,8 +1,9 @@
-import LoginForm from '@/components/features/login-form'
+import Account from '@/components/features/login/account'
 
 export default function Page() {
-
-  return <>
-    <LoginForm />
-  </>
+  return (
+    <>
+      <Account />
+    </>
+  )
 }

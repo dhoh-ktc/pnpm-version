@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Button } from "@repo/ui/components/actions/button";
+import { Button } from '@repo/ui/components/actions/button'
 import {
   Card,
   CardContent,
@@ -8,16 +8,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@repo/ui/components/layouts/card";
-import { Input } from "@repo/ui/components/inputs/input";
-import { Label } from "@repo/ui/components/widgets/label";
+} from '@repo/ui/components/layouts/card'
+import { Input } from '@repo/ui/components/form/input'
+import { Label } from '@repo/ui/components/widgets/label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@repo/ui/components/inputs/select";
+} from '@repo/ui/components/form/select'
 
 export function FormLogin() {
   return (
@@ -55,5 +55,5 @@ export function FormLogin() {
         <Button>Deploy</Button>
       </CardFooter>
     </Card>
-  );
+  )
 }
