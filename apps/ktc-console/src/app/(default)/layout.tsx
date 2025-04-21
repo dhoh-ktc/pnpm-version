@@ -1,20 +1,28 @@
+'use client'
+
 import Header from '@/components/header'
 import { AppSidebar } from '@repo/ui/components/app-sidebar'
 import { SidebarProvider, SidebarTrigger } from '@repo/ui/components/sidebar'
+import SessionSyncProvider from '@/components/providers/SessionSyncProvider'
+import { SessionProvider } from 'next-auth/react'
 
 export default function Layout({
-                                 children,
-                               }: Readonly<{
-  children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode
 }>) {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <Header />
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <SessionProvider>
+      <SessionSyncProvider>
+        <SidebarProvider>
+          <AppSidebar />
+          <main>
+            <Header />
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
+      </SessionSyncProvider>
+    </SessionProvider>
   )
 }

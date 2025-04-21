@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { EnvironmentUtil } from '@repo/utils/environment-util'
+import { CookieUtil } from '@repo/utils/cookie-util'
 
 export default class ApiClient {
   private isRefreshing = false
@@ -15,9 +16,10 @@ export default class ApiClient {
 
   protected constructor() {
     if (EnvironmentUtil.isBrowser()) {
-      this.initializeAccessToken()
-      // this.setupRequestInterceptors()
-      // this.setupResponseInterceptors()
+      this.initializeAccessToken().then((r) => {
+        // this.setupRequestInterceptors()
+        // this.setupResponseInterceptors()
+      })
     }
   }
 
@@ -29,10 +31,10 @@ export default class ApiClient {
     return ApiClient.instance
   }
 
-  private initializeAccessToken() {
-    const storedToken = localStorage.getItem('accessToken')
-    if (storedToken) {
-      this.setAccessToken(storedToken)
+  private async initializeAccessToken() {
+    const token = CookieUtil.getCookie('accessToken')
+    if (token) {
+      this.setAccessToken(token)
     }
   }
 
@@ -44,11 +46,9 @@ export default class ApiClient {
   }
 
   public setAccessToken(accessToken: string) {
-    const newAuthorization = accessToken ? `Bearer ${accessToken}` : undefined
+    if (accessToken)
+      this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
 
-    localStorage.setItem('accessToken', accessToken)
-    this.axiosInstance.defaults.headers.common['Authorization'] =
-      newAuthorization
     // this.setupRequestInterceptors()
   }
 }
