@@ -1,6 +1,6 @@
 'use client'
 
-import VLoginForm, { VLoginFormProps } from '@/components/widgets/v-login-form'
+import VLoginForm, { VLoginFormProps } from '@/components/widgets/organisms/v-login-form'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -35,7 +35,7 @@ export default function LoginAccount() {
       redirect: false,
     }).then((res) => {
       if (res && res.ok) {
-        router.push('/')
+        router.push('/dashboard')
       } else {
         alert(res?.error)
       }
@@ -55,5 +55,5 @@ export default function LoginAccount() {
     },
   }
 
-  return <VLoginForm vprops={props} />
+  return <VLoginForm className="mt-1" vprops={props} />
 }
