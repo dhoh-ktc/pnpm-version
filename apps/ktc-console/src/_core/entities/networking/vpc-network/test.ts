@@ -4,7 +4,6 @@ import { IVpcNetworkData } from '@/_core/entities/networking/vpc-network/types'
 
 describe('VpcNetwork 클래스', () => {
   it('유효한 데이터로 초기화가 제대로 이루어져야 한다 (Test VPC 1)', () => {
-
     // @ts-ignore
     const data: IVpcNetworkData = mockVpcNetworkData[0]
     const vpcNetwork = new VpcNetwork(data)
@@ -13,29 +12,12 @@ describe('VpcNetwork 클래스', () => {
     expect(vpcNetwork.id).toBe(data.id)
     expect(vpcNetwork.name).toBe(data.name)
     expect(vpcNetwork.status).toBe(data.status)
-    expect(vpcNetwork.created_at).toEqual([
-      '2025',
-      '04',
-      '16',
-      '수',
-      '10',
-      '46',
-      '01',
-    ])
-    expect(vpcNetwork.updated_at).toEqual([
-      '2025',
-      '04',
-      '16',
-      '수',
-      '10',
-      '46',
-      '01',
-    ])
+    expect(vpcNetwork.created_at).toEqual(['2025', '04', '16', '수', '10', '46', '01'])
+    expect(vpcNetwork.updated_at).toEqual(['2025', '04', '16', '수', '10', '46', '01'])
     expect(vpcNetwork.provider_network_type).toBe(data.provider_network_type)
   })
 
   it('빈 서브넷과 가용 영역 힌트를 올바르게 처리해야 한다 (Test VPC 3)', () => {
-
     // TODO: 확실하게 타입 명시해줘도 undefined 에러가 발생함. 해결 필요
     // @ts-ignore
     const data: IVpcNetworkData = mockVpcNetworkData[2]
@@ -61,20 +43,8 @@ describe('VpcNetwork 클래스', () => {
     // @ts-ignore
     const vpcNetwork = new VpcNetwork(data)
 
-    expect(vpcNetwork.created_at).toEqual(['2025',
-      '04',
-      '16',
-      '수',
-      '10',
-      '46',
-      '01'])
-    expect(vpcNetwork.updated_at).toEqual(['2025',
-      '04',
-      '16',
-      '수',
-      '10',
-      '46',
-      '01'])
+    expect(vpcNetwork.created_at).toEqual(['2025', '04', '16', '수', '10', '46', '01'])
+    expect(vpcNetwork.updated_at).toEqual(['2025', '04', '16', '수', '10', '46', '01'])
   })
 
   it('모든 속성이 완전한 VPC 데이터를 올바르게 처리해야 한다 (Test VPC 1)', () => {

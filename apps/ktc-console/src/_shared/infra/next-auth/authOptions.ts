@@ -45,7 +45,7 @@ export const authOptions: any = {
         try {
           const { loginType, loginId, password, clientId, accountId } = credentials
 
-          const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/v1/auth/tokens`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL_IDENTITY}/v1/auth/tokens`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

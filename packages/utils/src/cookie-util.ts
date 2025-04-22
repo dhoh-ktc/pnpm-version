@@ -1,4 +1,4 @@
-import { EnvironmentUtil } from '@repo/utils/environment-util.js'
+// import { EnvironmentUtil } from './environment-util.js'
 
 export class CookieUtil {
   /**
@@ -12,7 +12,7 @@ export class CookieUtil {
     value: string,
     options: { path?: string; expires?: Date; maxAge?: number } = {},
   ): void {
-    if (!EnvironmentUtil.isBrowser()) throw new Error('Not in browser environment')
+    // if (!EnvironmentUtil.isBrowser()) throw new Error('Not in browser environment')
 
     let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
 
@@ -60,6 +60,4 @@ export class CookieUtil {
   static deleteCookie(name: string, path?: string): void {
     this.setCookie(name, '', { path, maxAge: -1 })
   }
-
-
 }

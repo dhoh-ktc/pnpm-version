@@ -2,7 +2,6 @@ import { IProject, IProjectData } from './types'
 import { CreationInformation } from '@/_core/entities/common/creation-information'
 
 export class Project implements IProject {
-
   createdAt: string[]
   createdBy: string
   description: string
@@ -13,7 +12,6 @@ export class Project implements IProject {
   updatedBy: string
 
   constructor(data: IProjectData) {
-
     this.description = data.description || ''
     this.id = data.id || ''
     this.name = data.name || ''
@@ -25,6 +23,4 @@ export class Project implements IProject {
     this.updatedAt = creationInfo.updatedAt
     this.updatedBy = creationInfo.updatedBy
   }
-
-
 }

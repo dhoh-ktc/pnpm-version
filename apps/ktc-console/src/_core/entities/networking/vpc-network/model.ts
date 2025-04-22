@@ -2,7 +2,6 @@ import { IVpcNetwork, IVpcNetworkData } from '@/_core/entities/networking/vpc-ne
 import { DateUtil } from '@repo/utils/date-util'
 
 export class VpcNetwork implements IVpcNetwork {
-
   availability_zone_hints: string[]
   availability_zones: string[]
   created_at: string[]
@@ -48,6 +47,4 @@ export class VpcNetwork implements IVpcNetwork {
     this.updated_at = DateUtil.getDateArray(data.updated_at)
     this.description = data.description
   }
-
-
 }

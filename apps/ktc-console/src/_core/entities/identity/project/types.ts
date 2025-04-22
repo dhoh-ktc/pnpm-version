@@ -1,4 +1,7 @@
-import { ICreationInformation, ICreationInformationData } from '@/_core/entities/common/creation-information'
+import {
+  ICreationInformation,
+  ICreationInformationData,
+} from '@/_core/entities/common/creation-information'
 
 export interface IProjectData extends ICreationInformationData {
   id?: string // 프로젝트 ID
