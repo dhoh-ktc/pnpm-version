@@ -1,6 +1,6 @@
 'use client'
 
-import VLoginForm, { VLoginFormProps } from '@/components/widgets/organisms/v-login-form'
+import VSignin, { VSigninProps } from '@/components/widgets/organisms/auth/VSignin'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -8,11 +8,11 @@ import {
   LOGIN_ACCOUNT_KEY,
   ZLoginAccountInput,
   ZLoginAccountSchema,
-} from '@/components/features/login/schemas'
+} from '@/components/features/auth/signin/schemas'
 import { signIn } from 'next-auth/react'
 import { LOGIN_TYPE } from '@/_core/entities/identity/login'
 
-export default function LoginAccount() {
+export default function FSignin() {
   const router = useRouter()
 
   const {
@@ -42,7 +42,7 @@ export default function LoginAccount() {
     })
   }
 
-  const props: VLoginFormProps = {
+  const props: VSigninProps = {
     loginId: register(LOGIN_ACCOUNT_KEY.LOGIN_ID),
     password: register(LOGIN_ACCOUNT_KEY.PASSWORD),
     errorMsg: {
@@ -55,5 +55,5 @@ export default function LoginAccount() {
     },
   }
 
-  return <VLoginForm className="mt-1" vprops={props} />
+  return <VSignin className="mt-1" vprops={props} />
 }

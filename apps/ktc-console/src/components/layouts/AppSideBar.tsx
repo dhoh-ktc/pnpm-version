@@ -1,21 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from 'lucide-react'
+import { AudioWaveform, Command, GalleryVerticalEnd, SquareTerminal } from 'lucide-react'
 
 import { NavMain } from '@repo/ui/components/nav-main'
-import { NavProjects } from '@repo/ui/components/nav-projects'
 import { NavUser } from '@repo/ui/components/nav-user'
 import { TeamSwitcher } from '@repo/ui/components/team-switcher'
 import {
@@ -35,7 +23,7 @@ const data = {
   },
   teams: [
     {
-      name: 'Acme Inc',
+      name: 'KT CLOUD',
       logo: GalleryVerticalEnd,
       plan: 'Enterprise',
     },
@@ -52,7 +40,7 @@ const data = {
   ],
   navMain: [
     {
-      title: '프로젝트',
+      title: 'PROJECT',
       url: '#',
       icon: SquareTerminal,
       isActive: true,
@@ -61,6 +49,14 @@ const data = {
           title: '프로젝트',
           url: '/project',
         },
+      ],
+    },
+    {
+      title: 'NETWORK',
+      url: '#',
+      icon: SquareTerminal,
+      isActive: false,
+      items: [
         {
           title: 'VPC',
           url: '/vpc',
@@ -71,88 +67,23 @@ const data = {
         },
       ],
     },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: Frame,
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: PieChart,
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: Map,
-    },
+
+    // projects: [
+    //   {
+    //     name: 'Design Engineering',
+    //     url: '#',
+    //     icon: Frame,
+    //   },
+    //   {
+    //     name: 'Sales & Marketing',
+    //     url: '#',
+    //     icon: PieChart,
+    //   },
+    //   {
+    //     name: 'Travel',
+    //     url: '#',
+    //     icon: Map,
+    //   },
   ],
 }
 
@@ -164,7 +95,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {/*<NavProjects projects={data.projects} />*/}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

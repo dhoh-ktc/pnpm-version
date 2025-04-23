@@ -1,6 +1,6 @@
 'use client'
 
-import Header from '@/components/header'
+import Header from '@/components/layouts/header'
 import { SidebarProvider, SidebarTrigger } from '@repo/ui/components/sidebar'
 import SessionSyncProvider from '@/components/providers/SessionSyncProvider'
 import { SessionProvider } from 'next-auth/react'

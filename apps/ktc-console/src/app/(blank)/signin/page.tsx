@@ -1,9 +1,9 @@
-import LoginAccount from '@/components/features/login/account'
+import FSignin from '@/components/features/auth/signin'
 
 export default function Page() {
   return (
     <>
-      <LoginAccount />
+      <FSignin />
     </>
   )
 }

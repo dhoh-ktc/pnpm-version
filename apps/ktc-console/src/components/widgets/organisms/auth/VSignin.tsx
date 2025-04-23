@@ -5,7 +5,7 @@ import { Input } from '@repo/ui/components/form/input'
 import { Label } from '@repo/ui/components/widgets/label'
 import React from 'react'
 
-export interface VLoginFormProps {
+export interface VSigninProps {
   errorMsg: {
     loginId: string
     password: string
@@ -27,11 +27,11 @@ export interface VLoginFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-export default function VLoginForm({
+export default function VSignin({
   className,
   vprops,
   ...props
-}: React.ComponentPropsWithoutRef<'div'> & { vprops: VLoginFormProps }) {
+}: React.ComponentPropsWithoutRef<'div'> & { vprops: VSigninProps }) {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
