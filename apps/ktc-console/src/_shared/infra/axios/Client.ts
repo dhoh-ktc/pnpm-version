@@ -1,30 +1,28 @@
 import axios, { AxiosInstance } from 'axios'
-import { EnvironmentUtil } from '@repo/utils/environment-util'
-import { CookieUtil } from '@repo/utils/cookie-util'
 
-import { APIRequest, APIResponse, HTTPMethod } from '@/_shared/infra/axios/APIClient.types'
-import { DOMAIN } from './APIClient.types'
-import { log } from 'next/dist/server/typescript/utils'
+import { CookieUtil } from '@repo/utils/cookie-util'
+import { APIRequest, DOMAIN, HTTPMethod } from './APIClient.types'
+import { EnvUtil } from '@repo/utils/env-util'
 
 export default class ApiClient {
   private isRefreshing = false
   private refreshSubscribers: Array<(token: string) => void> = []
 
   private baseURL = {
-    [DOMAIN.IDENTITY]: `${process.env.NEXT_PUBLIC_BASEURL_IDENTITY}/v1`,
+    [DOMAIN.IDENTITY]: `/api/identity`,
     [DOMAIN.NETWORK]: `${process.env.NEXT_PUBLIC_BASEURL_IDENTITY}/v1.0`,
   }
 
   protected static instance: ApiClient
   protected axiosInstance: AxiosInstance = axios.create({
-    withCredentials: true,
+    // withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
   protected constructor() {
-    if (EnvironmentUtil.isBrowser()) {
+    if (EnvUtil.isBrowser()) {
       this.initializeAccessToken()
       // this.setupRequestDefaultInterceptors()
       // this.setupResponseDefaultInterceptors()
@@ -60,14 +58,18 @@ export default class ApiClient {
     // this.setupRequestInterceptors()
   }
 
-  public request<T extends APIResponse>(req: APIRequest<T>): Promise<T> {
+  //
+  public request<T>(req: APIRequest<any>): Promise<T> {
     const isRead = req.method === HTTPMethod.GET
+
+    const token = CookieUtil.getCookie('accessToken')
 
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request({
           baseURL: this.baseURL[req.domain],
           url: req.path,
+          method: req.method,
           params: isRead && req.params,
           data: !isRead && req.params,
         })
@@ -77,7 +79,7 @@ export default class ApiClient {
 
           resolve(result.data as T)
         })
-        .catch((error) => log(error))
+        .catch((error) => console.log(error))
     })
   }
 }

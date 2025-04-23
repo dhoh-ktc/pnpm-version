@@ -1,4 +1,4 @@
-// import { EnvironmentUtil } from './environment-util.js'
+import { EnvUtil } from '@repo/utils/env-util'
 
 export class CookieUtil {
   /**
@@ -12,7 +12,7 @@ export class CookieUtil {
     value: string,
     options: { path?: string; expires?: Date; maxAge?: number } = {},
   ): void {
-    // if (!EnvironmentUtil.isBrowser()) throw new Error('Not in browser environment')
+    if (!EnvUtil.isBrowser()) throw new Error('Not in browser environment')
 
     let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
 
@@ -37,7 +37,7 @@ export class CookieUtil {
    * @returns 쿠키 값 (없을 경우 null 반환)
    */
   static getCookie(name: string): string | null {
-    if (!EnvironmentUtil.isBrowser()) return null
+    if (!EnvUtil.isBrowser()) return null
 
     const cookies = document.cookie.split('; ')
 

@@ -35,7 +35,7 @@ export default function LoginAccount() {
       redirect: false,
     }).then((res) => {
       if (res && res.ok) {
-        router.push('/dashboard')
+        router.push('/project')
       } else {
         alert(res?.error)
       }

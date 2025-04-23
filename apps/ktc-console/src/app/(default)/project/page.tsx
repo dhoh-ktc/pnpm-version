@@ -1,42 +1,28 @@
 'use client'
 
-import { Input } from '@repo/ui/components/form/input'
-import { Button } from '@repo/ui/components/actions/button'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { ProjectService } from '@/_core/services/identity/project/project'
+import { IProject, Project } from '@/_core/entities/identity/project'
+import { VProjectTable } from '@/components/widgets/organisms/project/VProjectTable'
+import { columns } from '@/components/widgets/organisms/project/columns'
+import FMakeForm from '@/components/features/project/make-form'
 
 export default function Page() {
-  const [name, setName] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
-
+  const [projectList, setProjectList] = useState<Project[]>([])
   const projectService = new ProjectService()
 
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+  const handleCreated = (project: IProject) => {
+    setProjectList([...projectList, project])
   }
 
-  const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value)
-  }
+  useEffect(() => {
+    projectService.fetchAll().then((result) => setProjectList(result))
+  }, [])
 
-  const handleClick = async () => {
-    alert(name + ' ' + description)
-    debugger
-    // const result = await projectService.create({ name, description })
-    // console.log(result)
-  }
-
-  useEffect(() => {}, [])
   return (
-    <div>
-      <Input type="text" placeholder="프로젝트 이름" onChange={handleNameChange} value={name} />
-      <Input
-        type="text"
-        placeholder="프로젝트 설명"
-        onChange={handleDescriptionChange}
-        value={description}
-      />
-      <Button onClick={handleClick}>프로젝트 만들기</Button>
-    </div>
+    <Suspense>
+      <FMakeForm onCreated={handleCreated} />
+      <VProjectTable columns={columns} data={projectList} />
+    </Suspense>
   )
 }

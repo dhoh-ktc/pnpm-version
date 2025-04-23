@@ -1,9 +1,7 @@
 import { IProject } from '@/_core/entities/identity/project'
 
 export interface IProjectService {
-  // fetchAll(): Promise<IProject[]>
-  //
-  // fetch(): Promise<IProject>
+  fetchAll(): Promise<IProject[]>
 
   create(data: Pick<IProject, 'name' | 'description'>): Promise<IProject>
 }

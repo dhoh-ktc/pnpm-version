@@ -1,6 +1,6 @@
 import { IProjectData } from '@/_core/entities/identity/project'
-import ApiClient from '@/_shared/infra/axios/ApiClient'
 import { APIRequest, DOMAIN, HTTPMethod } from '@/_shared/infra/axios/APIClient.types'
+import ApiClient from '@/_shared/infra/axios/Client'
 
 export class ProjectAPI {
   domain = DOMAIN.IDENTITY
@@ -14,12 +14,17 @@ export class ProjectAPI {
     }
     return await ApiClient.shared().request(req)
   }
+
+  async fetchItems(): Promise<IProjectData[]> {
+    const req: APIRequest<IProjectData> = {
+      domain: this.domain,
+      path: '/projects',
+      method: HTTPMethod.GET,
+    }
+    return await ApiClient.shared().request(req)
+  }
 }
 
-//
-//   async fetchItems(params?: IPaginationRequest | undefined): Promise<IPostData[]> {
-//     return await ApiClient.shared.request(new PostAPI.FetchAll(params))
-//   }
 //
 //   async saveItem(params: IPostData): Promise<IPostData> {
 //     if (params.id) return await ApiClient.shared.request(new PostAPI.Update(params))

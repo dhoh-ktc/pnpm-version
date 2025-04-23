@@ -12,7 +12,6 @@ export default function SessionSyncProvider({ children }: { children: React.Reac
   useEffect(() => {
     console.log('session', session)
     if (status === 'authenticated') {
-      console.log('here')
       setAuth({
         user: session.user,
         name: session.name,

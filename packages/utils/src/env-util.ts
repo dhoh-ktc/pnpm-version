@@ -1,4 +1,4 @@
-export class EnvironmentUtil {
+export class EnvUtil {
   static isServer(): boolean {
     return typeof window === 'undefined'
   }
