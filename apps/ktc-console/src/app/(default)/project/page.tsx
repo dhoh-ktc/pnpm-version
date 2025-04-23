@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from 'react'
 import { ProjectService } from '@/_core/services/identity/project/project'
 import { IProject, Project } from '@/_core/entities/identity/project'
-import { VProjectTable } from '@/components/widgets/organisms/project/VProjectTable'
+import { VProjectTable } from '@/components/widgets/organisms/VProjectTable'
 import { columns } from '@/components/widgets/organisms/project/columns'
 import FMakeForm from '@/components/features/project/make-form'
 

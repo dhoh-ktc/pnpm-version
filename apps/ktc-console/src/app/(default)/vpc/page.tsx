@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from '@repo/ui/components/form/select'
 import { IVpc } from '@/_core/entities/networking/vpc'
+import { columns } from '@/components/widgets/organisms/vpc/columns'
+import { VProjectTable } from '@/components/widgets/organisms/VProjectTable'
 
 export default function Page() {
   const vpcService = new VpcService()
@@ -21,6 +23,8 @@ export default function Page() {
 
   const [projectId, setProjectId] = useState('')
   const [projectList, setProjectList] = useState<IProject[]>([])
+
+  const [vpcList, setVpcList] = useState<IVpc[]>([])
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [cidr, setCidr] = useState('')
@@ -28,6 +32,7 @@ export default function Page() {
   const handleChange = (value: string) => {
     console.log(value)
     setProjectId(value)
+    vpcService.fetchAll(value).then((item) => setVpcList(item))
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -35,7 +40,7 @@ export default function Page() {
     console.log(projectId, name, description, cidr)
     vpcService
       .create({ projectId, name, description, cidr })
-      .then((result: IVpc) => console.log(result))
+      .then((result: IVpc) => setVpcList([...vpcList, result]))
   }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +57,6 @@ export default function Page() {
     projectService.fetchAll().then((data) => {
       setProjectList(data)
     })
-    vpcService.fetchAll('aa9a2340cb8e4a8997391416a3ef6e67')
   }, [])
   return (
     <form onSubmit={handleSubmit}>
@@ -66,6 +70,9 @@ export default function Page() {
           ))}
         </SelectContent>
       </Select>
+
+      <VProjectTable columns={columns} data={vpcList} />
+
       <Input value={name} onChange={handleNameChange} placeholder="VPC 이름" />
       <Input value={cidr} onChange={handleCIDRChange} placeholder="CIDR ex)10.10.0.0/16" />
       <Input value={description} onChange={handleDescriptionChange} placeholder="vpc 설명" />
