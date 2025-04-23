@@ -66,7 +66,9 @@ export default function Page() {
         </SelectTrigger>
         <SelectContent>
           {projectList.map((item) => (
-            <SelectItem value={item.id}>{item.name}</SelectItem>
+            <SelectItem key={item.id} value={item.id}>
+              {item.name}
+            </SelectItem>
           ))}
         </SelectContent>
       </Select>
