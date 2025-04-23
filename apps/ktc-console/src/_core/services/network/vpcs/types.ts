@@ -1,0 +1,20 @@
+import { IProject } from '@/_core/entities/identity/project'
+import { IVpc } from '@/_core/entities/networking/vpc'
+
+export interface IVpcService {
+  fetchAll(projectId: string): Promise<IVpc[]>
+
+  create(data: {
+    projectId: string
+    name: string
+    cidr: string
+    description: string
+  }): Promise<IProject>
+}
+
+// export interface IPostsServiceMock {
+//   fetchMore: jest.Mock<Promise<IPost[]>>
+//   fetchOne: jest.Mock<Promise<[IPost, IComment[]]>>
+//   fetchMyPost: jest.Mock<Promise<IPost[]>>
+//   getMyPost: jest.Mock<IPost[]>
+// }

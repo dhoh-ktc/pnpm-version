@@ -10,7 +10,7 @@ export default class ApiClient {
 
   private baseURL = {
     [DOMAIN.IDENTITY]: `/api/identity`,
-    [DOMAIN.NETWORK]: `${process.env.NEXT_PUBLIC_BASEURL_IDENTITY}/v1.0`,
+    [DOMAIN.NETWORK]: `/api/network`,
   }
 
   protected static instance: ApiClient
@@ -72,6 +72,7 @@ export default class ApiClient {
           method: req.method,
           params: isRead && req.params,
           data: !isRead && req.params,
+          headers: req.headers,
         })
         .then((result) => {
           console.log('🎉 API 응답 :', result)

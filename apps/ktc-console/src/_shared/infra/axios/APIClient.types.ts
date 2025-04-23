@@ -17,6 +17,7 @@ export type APIRequest<R> = {
   path: string
   params?: any
   method: HTTPMethod
+  headers?: any
 }
 
 export type APIResponse = {}

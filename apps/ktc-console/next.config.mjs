@@ -8,6 +8,10 @@ const nextConfig = {
         source: '/api/identity/:path*',
         destination: 'http://identity.dev.ktcloudservice.com/v1/:path*',
       },
+      {
+        source: '/api/network/:path*',
+        destination: 'http://networking.dev.ktcloudservice.com/v2.0/:path*',
+      },
     ]
   },
 
