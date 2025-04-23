@@ -1,4 +1,3 @@
-import { IProject } from '@/_core/entities/identity/project'
 import { IVpc } from '@/_core/entities/networking/vpc'
 
 export interface IVpcService {
@@ -9,7 +8,7 @@ export interface IVpcService {
     name: string
     cidr: string
     description: string
-  }): Promise<IProject>
+  }): Promise<IVpc>
 }
 
 // export interface IPostsServiceMock {
