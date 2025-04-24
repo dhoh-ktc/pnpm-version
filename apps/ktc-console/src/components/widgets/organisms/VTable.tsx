@@ -16,7 +16,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export function VProjectTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function VTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,

@@ -1,9 +1,9 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { IProject } from '@/_core/entities/identity/project'
+import { IVpc } from '@/_core/entities/networking/vpc'
 
-export const columns: ColumnDef<IProject>[] = [
+export const columns: ColumnDef<IVpc>[] = [
   {
     accessorKey: 'name',
     header: 'VPC 명',

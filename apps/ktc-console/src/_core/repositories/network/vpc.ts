@@ -1,10 +1,10 @@
 import { IProjectData } from '@/_core/entities/identity/project'
 import { APIRequest, DOMAIN, HTTPMethod } from '@/_shared/infra/axios/APIClient.types'
-import ApiClient from '@/_shared/infra/axios/Client'
 import { IVpcData } from '@/_core/entities/networking/vpc'
 import { CookieUtil } from '@repo/utils/cookie-util'
+import APIClient from '@/_shared/infra/axios/APIClient'
 
-export class VpcAPI {
+export class VpcRepository {
   domain = DOMAIN.NETWORK
 
   async save(params: {
@@ -23,7 +23,7 @@ export class VpcAPI {
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
-    return await ApiClient.shared().request(req)
+    return await APIClient.shared().request(req)
   }
 
   async fetchItems(projectId: string): Promise<IVpcData[]> {
@@ -36,7 +36,7 @@ export class VpcAPI {
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
-    return await ApiClient.shared().request(req)
+    return await APIClient.shared().request(req)
   }
 }
 

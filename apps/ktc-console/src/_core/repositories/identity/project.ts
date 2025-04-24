@@ -1,8 +1,8 @@
 import { IProjectData } from '@/_core/entities/identity/project'
 import { APIRequest, DOMAIN, HTTPMethod } from '@/_shared/infra/axios/APIClient.types'
-import ApiClient from '@/_shared/infra/axios/Client'
+import APIClient from '@/_shared/infra/axios/APIClient'
 
-export class ProjectAPI {
+export class ProjectRepository {
   domain = DOMAIN.IDENTITY
 
   async save(params: Pick<Required<IProjectData>, 'name' | 'description'>): Promise<IProjectData> {
@@ -12,7 +12,7 @@ export class ProjectAPI {
       method: HTTPMethod.POST,
       params,
     }
-    return await ApiClient.shared().request(req)
+    return await APIClient.shared().request(req)
   }
 
   async fetchItems(): Promise<IProjectData[]> {
@@ -21,7 +21,7 @@ export class ProjectAPI {
       path: '/projects',
       method: HTTPMethod.GET,
     }
-    return await ApiClient.shared().request(req)
+    return await APIClient.shared().request(req)
   }
 }
 

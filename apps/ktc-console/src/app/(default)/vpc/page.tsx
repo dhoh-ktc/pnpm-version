@@ -15,7 +15,7 @@ import {
 } from '@repo/ui/components/form/select'
 import { IVpc } from '@/_core/entities/networking/vpc'
 import { columns } from '@/components/widgets/organisms/vpc/columns'
-import { VProjectTable } from '@/components/widgets/organisms/VProjectTable'
+import { VTable } from '@/components/widgets/organisms/VTable'
 
 export default function Page() {
   const vpcService = new VpcService()
@@ -73,7 +73,7 @@ export default function Page() {
         </SelectContent>
       </Select>
 
-      <VProjectTable columns={columns} data={vpcList} />
+      <VTable columns={columns} data={vpcList} />
 
       <Input value={name} onChange={handleNameChange} placeholder="VPC 이름" />
       <Input value={cidr} onChange={handleCIDRChange} placeholder="CIDR ex)10.10.0.0/16" />

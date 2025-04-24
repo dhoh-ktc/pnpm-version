@@ -4,16 +4,16 @@ import { CookieUtil } from '@repo/utils/cookie-util'
 import { APIRequest, DOMAIN, HTTPMethod } from './APIClient.types'
 import { EnvUtil } from '@repo/utils/env-util'
 
-export default class ApiClient {
+export default class APIClient {
   private isRefreshing = false
   private refreshSubscribers: Array<(token: string) => void> = []
 
   private baseURL = {
-    [DOMAIN.IDENTITY]: `/api/identity`,
-    [DOMAIN.NETWORK]: `/api/network`,
+    [DOMAIN.IDENTITY]: `${process.env.NEXT_PUBLIC_BASEURL_IDENTITY}/v1`,
+    [DOMAIN.NETWORK]: `${process.env.NEXT_PUBLIC_BASEURL_NETWORK}/v2.0`,
   }
 
-  protected static instance: ApiClient
+  protected static instance: APIClient
   protected axiosInstance: AxiosInstance = axios.create({
     // withCredentials: true,
     headers: {
@@ -30,11 +30,11 @@ export default class ApiClient {
   }
 
   // API 요청을 위한 Axios 인스턴스
-  public static shared(): ApiClient {
-    if (!ApiClient.instance) {
-      ApiClient.instance = new ApiClient()
+  public static shared(): APIClient {
+    if (!APIClient.instance) {
+      APIClient.instance = new APIClient()
     }
-    return ApiClient.instance
+    return APIClient.instance
   }
 
   private initializeAccessToken() {
