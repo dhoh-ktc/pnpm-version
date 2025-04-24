@@ -1,7 +1,9 @@
 import { IVpc } from '@/_core/entities/networking/vpc'
 
 export interface ISubnetService {
-  fetchAll(projectId: string): Promise<IVpc[]>
+  // fetchAll(projectId: string): Promise<IVpc[]>
+
+  getOne(projectId: string): Promise<any>
 
   create(data: {
     name: string

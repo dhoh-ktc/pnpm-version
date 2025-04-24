@@ -23,11 +23,24 @@ export class VpcRepository {
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
-    
+
     return await APIClient.shared().request(req)
   }
 
-  async fetchItems(projectId: string): Promise<IVpcData[]> {
+  async fetch(projectId: string, vpcId: string): Promise<IVpcData> {
+    const req: APIRequest<IVpcData> = {
+      domain: this.domain,
+      path: `/vpcs/${vpcId}`,
+      method: HTTPMethod.GET,
+      headers: {
+        'X-Project-Id': projectId,
+        'X-Auth-Token': CookieUtil.getCookie('accessToken'),
+      },
+    }
+    return await APIClient.shared().request(req)
+  }
+
+  async fetchList(projectId: string): Promise<IVpcData[]> {
     const req: APIRequest<IProjectData> = {
       domain: this.domain,
       path: '/vpcs',

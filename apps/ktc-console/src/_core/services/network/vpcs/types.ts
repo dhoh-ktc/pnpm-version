@@ -1,7 +1,9 @@
 import { IVpc } from '@/_core/entities/networking/vpc'
 
 export interface IVpcService {
-  fetchAll(projectId: string): Promise<IVpc[]>
+  get(projectId: string, vpcId: string): Promise<IVpc>
+
+  getList(projectId: string): Promise<IVpc[]>
 
   create(data: {
     projectId: string

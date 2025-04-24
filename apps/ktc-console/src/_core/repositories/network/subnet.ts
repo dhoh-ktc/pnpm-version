@@ -12,18 +12,23 @@ export class SubnetRepository {
     network_id: string
     cidr: string
     subnetpool_id: string
+    project_id: string
   }): Promise<IVpcData> {
+    const { project_id, ...rest } = params
+
     const req: APIRequest<IVpcData> = {
       domain: this.domain,
       path: '/subnets',
       method: HTTPMethod.POST,
       params: {
-        ...params,
-        ip_version: 4,
-        enable_dhcp: true,
+        subnet: {
+          ...rest,
+          ip_version: 4,
+          enable_dhcp: true,
+        },
       },
       headers: {
-        'X-Project-Id': params.network_id,
+        'X-Project-Id': project_id,
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
@@ -31,7 +36,25 @@ export class SubnetRepository {
     return await APIClient.shared().request(req)
   }
 
-  async fetchItems(projectId: string): Promise<IVpcData[]> {
+  async fetch(projectId: string): Promise<any> {
+    const params = {
+      project_id: projectId,
+    }
+    const req: APIRequest<any> = {
+      domain: this.domain,
+      path: '/subnets',
+      method: HTTPMethod.GET,
+      params,
+      headers: {
+        'X-Project-Id': projectId,
+        'X-Auth-Token': CookieUtil.getCookie('accessToken'),
+      },
+    }
+
+    return await APIClient.shared().request(req)
+  }
+
+  async fetchList(projectId: string): Promise<IVpcData[]> {
     const req: APIRequest<IProjectData> = {
       domain: this.domain,
       path: '/vpcs',

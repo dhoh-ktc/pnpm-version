@@ -24,26 +24,35 @@ export default function Page() {
   const [projectId, setProjectId] = useState('')
   const [projectList, setProjectList] = useState<IProject[]>([])
 
-  const [networkId, setNetworkId] = useState('')
+  const [vpcId, setVpcId] = useState('')
+
   const [vpcList, setVpcList] = useState<IVpc[]>([])
 
   const [name, setName] = useState('')
   const [subnetpoolId, setSubnetpoolId] = useState('')
   const [cidr, setCidr] = useState('')
 
-  const handleChange = (value: string) => {
-    console.log(value)
+  const handleChangeProject = (value: string) => {
+    console.log('projectID', value)
     setProjectId(value)
-    vpcService.fetchAll(value).then((item) => setVpcList(item))
+    vpcService.getList(value).then((item) => setVpcList(item))
   }
 
-  const handleChangeVpc = (value: string) => setNetworkId(value)
+  const handleChangeVpc = async (value: string) => {
+    console.log('vpcID=networkId', value)
+    setVpcId(value)
+    await vpcService.get(projectId, vpcId).then((result) => {
+      console.log('VPC상세', result)
+      console.log(result.subnetpool?.id ?? '')
+      setSubnetpoolId(result.subnetpool?.id ?? '')
+    })
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(name, cidr, subnetpoolId, cidr)
     subnetService
-      .create({ name, cidr, subnetpool_id: subnetpoolId, network_id: networkId })
+      .create({ name, cidr, subnetpool_id: subnetpoolId, network_id: vpcId, project_id: projectId })
       .then((result: IVpc) => setVpcList([...vpcList, result]))
       .catch((e) => {
         console.log('here')
@@ -69,7 +78,7 @@ export default function Page() {
   }, [])
   return (
     <form onSubmit={handleSubmit}>
-      <Select onValueChange={handleChange}>
+      <Select onValueChange={handleChangeProject}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="프로젝트 선택" />
         </SelectTrigger>
@@ -95,14 +104,9 @@ export default function Page() {
         </SelectContent>
       </Select>
 
-      <Input value={name} onChange={handleChangeName} placeholder="VPC 이름" />
+      <Input value={name} onChange={handleChangeName} placeholder="서브넷 이름" />
       <Input value={cidr} onChange={handleChangeCIDR} placeholder="CIDR ex)10.1.1.0/24" />
-      <Input
-        value={subnetpoolId}
-        onChange={handleChangeSubnetpoolId}
-        placeholder="subnetpoolId ex)b27c83af-c08a-4c04-a695-d5e623a5364b"
-      />
-      <Button type="submit">VPC 만들기</Button>
+      <Button type="submit">서브넷 만들기</Button>
     </form>
   )
 }

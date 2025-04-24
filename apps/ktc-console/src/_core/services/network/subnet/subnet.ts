@@ -13,10 +13,15 @@ export class SubnetService implements ISubnetService {
     network_id: string
     cidr: string
     subnetpool_id: string
+    project_id: string
   }): Promise<IVpc> {
     return await this.subnetRepository
       .save({ ...data })
       .then((vpcData: IVpcData) => new Vpc(vpcData))
+  }
+
+  public async getOne(projectId: string): Promise<any> {
+    return await this.subnetRepository.fetch(projectId)
   }
 
   // public async fetchAll(projectId: string): Promise<IVpc[]> {

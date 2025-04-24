@@ -1,3 +1,6 @@
+import { INetwork, INetworkData } from '@/_core/entities/networking/vpc/network/types'
+import { ISubnetPool, ISubnetPoolData } from '@/_core/entities/networking/vpc/subnetpool/types'
+
 export interface IVpcData {
   id: string
   name: string
@@ -6,9 +9,13 @@ export interface IVpcData {
   description: string
   created: string
   updated: string
+  network?: INetworkData
+  subnetpool?: ISubnetPoolData
 }
 
 export interface IVpc extends Omit<IVpcData, 'created' | 'updated'> {
   created: string[]
   updated: string[]
+  network?: INetwork
+  subnetpool?: ISubnetPool
 }

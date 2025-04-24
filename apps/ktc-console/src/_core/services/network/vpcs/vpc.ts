@@ -15,9 +15,13 @@ export class VpcService implements IVpcService {
     return await this.vpcRepository.save({ ...data }).then((vpcData: IVpcData) => new Vpc(vpcData))
   }
 
-  public async fetchAll(projectId: string): Promise<IVpc[]> {
+  public async get(projectId: string, vpcId: string): Promise<IVpc> {
+    return await this.vpcRepository.fetch(projectId, vpcId).then((result) => new Vpc(result))
+  }
+
+  public async getList(projectId: string): Promise<IVpc[]> {
     return await this.vpcRepository
-      .fetchItems(projectId)
+      .fetchList(projectId)
       .then((result) => result.map((item) => new Vpc(item)))
   }
 }

@@ -1,5 +1,7 @@
 import { IVpc, IVpcData } from '@/_core/entities/networking/vpc/types'
 import { DateUtil } from '@repo/utils/date-util'
+import { INetwork } from '@/_core/entities/networking/vpc/network/types'
+import { ISubnetPool } from '@/_core/entities/networking/vpc/subnetpool/types'
 
 export class Vpc implements IVpc {
   id: string
@@ -9,6 +11,8 @@ export class Vpc implements IVpc {
   description: string
   created: string[]
   updated: string[]
+  network?: INetwork
+  subnetpool?: ISubnetPool
 
   constructor(data: IVpcData) {
     this.id = data.id
@@ -19,5 +23,8 @@ export class Vpc implements IVpc {
 
     this.created = data.created ? DateUtil.getDateArray(data.created) : []
     this.updated = data.updated ? DateUtil.getDateArray(data.updated) : []
+
+    if (data.network) this.network = data.network
+    if (data.subnetpool) this.subnetpool = data.subnetpool
   }
 }

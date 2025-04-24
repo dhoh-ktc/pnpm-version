@@ -32,7 +32,7 @@ export default function Page() {
   const handleChange = (value: string) => {
     console.log(value)
     setProjectId(value)
-    vpcService.fetchAll(value).then((item) => setVpcList(item))
+    vpcService.getList(value).then((item) => setVpcList(item))
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
