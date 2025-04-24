@@ -24,7 +24,7 @@ export default function VSelect({
 }: React.ComponentPropsWithoutRef<'div'> & { vprops: VSelectProps }) {
   //
   return (
-    <div {...props}>
+    <div className={className} {...props}>
       <Select onValueChange={vprops.onChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="프로젝트 선택" />

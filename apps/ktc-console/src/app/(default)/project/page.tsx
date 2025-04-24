@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ProjectService } from '@/_core/services/identity/project/project'
 import { IProject, Project } from '@/_core/entities/identity/project'
 import { VTable } from '@/components/widgets/organisms/VTable'
@@ -20,9 +20,11 @@ export default function Page() {
   }, [])
 
   return (
-    <Suspense>
+    <>
+      <h2 className="mb-4 text-xl font-bold">프로젝트 생성</h2>
       <FMakeForm onCreated={handleCreated} />
+      <h2 className="mt-20 mb-4 text-xl font-bold">내 프로젝트 목록</h2>
       <VTable columns={columns} data={projectList} />
-    </Suspense>
+    </>
   )
 }

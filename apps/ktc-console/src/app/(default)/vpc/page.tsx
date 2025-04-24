@@ -14,16 +14,15 @@ export default function Page() {
   const vpcService = new VpcService()
   const projectService = new ProjectService()
 
-  const [projectId, setProjectId] = useState('')
+  const [selectedProject, setSelectedProject] = useState<IProject>()
   const [projectList, setProjectList] = useState<IProject[]>([])
   const [vpcList, setVpcList] = useState<IVpc[]>([])
 
-  /**
-   * Interaction
-   */
-
+  /** ********
+   * Interactions
+   * *********/
   const handleProjectChange = (projectId: string) => {
-    setProjectId(projectId)
+    setSelectedProject(projectList.filter((item) => item.id === projectId)[0])
     vpcService.getList(projectId).then((item) => setVpcList(item))
   }
 
@@ -31,10 +30,9 @@ export default function Page() {
     setVpcList([...vpcList, vpc])
   }
 
-  /**
-   * Lifecycle
-   */
-
+  /** ********
+   * Lifecycles
+   * *********/
   useEffect(() => {
     projectService.fetchAll().then((data) => {
       setProjectList(data)
@@ -43,9 +41,17 @@ export default function Page() {
 
   return (
     <>
-      <VSelect vprops={{ items: projectList, onChange: handleProjectChange }} />
-      <VTable columns={columns} data={vpcList} />
-      <FMakeForm projectId={projectId} onCreated={handleCreated} />
+      <h2 className="text-xl">Step1. 프로젝트 선택</h2>
+      <VSelect className="mt-4" vprops={{ items: projectList, onChange: handleProjectChange }} />
+
+      {selectedProject && (
+        <>
+          <h2 className="mt-8 mb-4 text-xl">Step2. {selectedProject.name} 관련 VPC 목록</h2>
+          <VTable columns={columns} data={vpcList} />
+          <h2 className="mt-8 mb-4 text-xl">Step3. {selectedProject.name} 관련 신규 VPC 생성</h2>
+          <FMakeForm projectId={selectedProject.id} onCreated={handleCreated} />
+        </>
+      )}
     </>
   )
 }
