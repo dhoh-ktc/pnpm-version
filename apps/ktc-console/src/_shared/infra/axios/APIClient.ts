@@ -25,7 +25,7 @@ export default class APIClient {
     if (EnvUtil.isBrowser()) {
       this.initializeAccessToken()
       // this.setupRequestDefaultInterceptors()
-      // this.setupResponseDefaultInterceptors()
+      this.setupResponseInterceptors()
     }
   }
 
@@ -58,6 +58,15 @@ export default class APIClient {
     // this.setupRequestInterceptors()
   }
 
+  public setupResponseInterceptors() {
+    this.axiosInstance.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        return Promise.reject(error)
+      },
+    )
+  }
+
   //
   public request<T>(req: APIRequest<any>): Promise<T> {
     const isRead = req.method === HTTPMethod.GET
@@ -80,7 +89,10 @@ export default class APIClient {
 
           resolve(result.data as T)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          console.log('에러', error)
+          // throw new Error({ message })
+        })
     })
   }
 }

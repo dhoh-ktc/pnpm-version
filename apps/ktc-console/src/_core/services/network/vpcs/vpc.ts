@@ -4,7 +4,7 @@ import { VpcRepository } from '@/_core/repositories/network/vpc'
 import { IVpc, IVpcData, Vpc } from '@/_core/entities/networking/vpc'
 
 export class VpcService implements IVpcService {
-  constructor(private readonly vpcRepository: VpcRepository = repository().NETWORK.VPC) {}
+  constructor(private readonly vpcRepository: VpcRepository = repository().NETWORK.VPC()) {}
 
   public async create(data: {
     projectId: string

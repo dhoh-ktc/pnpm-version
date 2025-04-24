@@ -4,26 +4,30 @@ import { IVpcData } from '@/_core/entities/networking/vpc'
 import { CookieUtil } from '@repo/utils/cookie-util'
 import APIClient from '@/_shared/infra/axios/APIClient'
 
-export class VpcRepository {
+export class SubnetRepository {
   domain = DOMAIN.NETWORK
 
   async save(params: {
-    projectId: string
     name: string
+    network_id: string
     cidr: string
-    description: string
+    subnetpool_id: string
   }): Promise<IVpcData> {
     const req: APIRequest<IVpcData> = {
       domain: this.domain,
-      path: '/vpcs',
+      path: '/subnets',
       method: HTTPMethod.POST,
-      params,
+      params: {
+        ...params,
+        ip_version: 4,
+        enable_dhcp: true,
+      },
       headers: {
-        'X-Project-Id': params.projectId,
+        'X-Project-Id': params.network_id,
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
-    
+
     return await APIClient.shared().request(req)
   }
 
@@ -37,6 +41,7 @@ export class VpcRepository {
         'X-Auth-Token': CookieUtil.getCookie('accessToken'),
       },
     }
+
     return await APIClient.shared().request(req)
   }
 }
