@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
-const protectedPaths = ['/dashboard', '/profile', '/settings'] // 보호할 경로 목록
+const protectedPaths = ['/project', '/vpc', '/subnet'] // 보호할 경로 목록
 
 export async function middleware(request: NextRequest) {
   console.log('현재 환경 : ', process.env.NEXT_PUBLIC_NODE_ENV)

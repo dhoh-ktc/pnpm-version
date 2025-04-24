@@ -1,7 +1,7 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { IVpc } from '@/_core/entities/networking/vpc'
+import { IVpc } from '@/_core/entities/network/vpc/vpc'
 
 export const columns: ColumnDef<IVpc>[] = [
   {

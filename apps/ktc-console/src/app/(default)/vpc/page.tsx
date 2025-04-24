@@ -1,21 +1,14 @@
 'use client'
 
-import { Input } from '@repo/ui/components/form/input'
-import { Button } from '@repo/ui/components/actions/button'
 import { VpcService } from '@/_core/services/network/vpcs/vpc'
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ProjectService } from '@/_core/services/identity/project/project'
 import { IProject } from '@/_core/entities/identity/project'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@repo/ui/components/form/select'
-import { IVpc } from '@/_core/entities/networking/vpc'
+import { IVpc } from '@/_core/entities/network/vpc/vpc'
+import FMakeForm from '@/components/features/vpc/make-form'
 import { columns } from '@/components/widgets/organisms/vpc/columns'
 import { VTable } from '@/components/widgets/organisms/VTable'
+import VSelect from '@/components/widgets/molecules/VSelect'
 
 export default function Page() {
   const vpcService = new VpcService()
@@ -23,62 +16,36 @@ export default function Page() {
 
   const [projectId, setProjectId] = useState('')
   const [projectList, setProjectList] = useState<IProject[]>([])
-
   const [vpcList, setVpcList] = useState<IVpc[]>([])
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [cidr, setCidr] = useState('')
 
-  const handleChange = (value: string) => {
-    console.log(value)
-    setProjectId(value)
-    vpcService.getList(value).then((item) => setVpcList(item))
-  }
+  /**
+   * Interaction
+   */
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(projectId, name, description, cidr)
-    vpcService
-      .create({ projectId, name, description, cidr })
-      .then((result: IVpc) => setVpcList([...vpcList, result]))
+  const handleProjectChange = (projectId: string) => {
+    setProjectId(projectId)
+    vpcService.getList(projectId).then((item) => setVpcList(item))
   }
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+  const handleCreated = (vpc: IVpc) => {
+    setVpcList([...vpcList, vpc])
   }
-  const handleCIDRChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCidr(e.target.value)
-  }
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value)
-  }
+
+  /**
+   * Lifecycle
+   */
 
   useEffect(() => {
     projectService.fetchAll().then((data) => {
       setProjectList(data)
     })
   }, [])
+
   return (
-    <form onSubmit={handleSubmit}>
-      <Select onValueChange={handleChange}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="프로젝트 선택" />
-        </SelectTrigger>
-        <SelectContent>
-          {projectList.map((item) => (
-            <SelectItem key={item.id} value={item.id}>
-              {item.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
+    <>
+      <VSelect vprops={{ items: projectList, onChange: handleProjectChange }} />
       <VTable columns={columns} data={vpcList} />
-
-      <Input value={name} onChange={handleNameChange} placeholder="VPC 이름" />
-      <Input value={cidr} onChange={handleCIDRChange} placeholder="CIDR ex)10.10.0.0/16" />
-      <Input value={description} onChange={handleDescriptionChange} placeholder="vpc 설명" />
-      <Button type="submit">VPC 만들기</Button>
-    </form>
+      <FMakeForm projectId={projectId} onCreated={handleCreated} />
+    </>
   )
 }

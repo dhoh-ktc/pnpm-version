@@ -1,6 +1,6 @@
 import { IProjectData } from '@/_core/entities/identity/project'
 import { APIRequest, DOMAIN, HTTPMethod } from '@/_shared/infra/axios/APIClient.types'
-import { IVpcData } from '@/_core/entities/networking/vpc'
+import { IVpcData } from '@/_core/entities/network/vpc/vpc'
 import { CookieUtil } from '@repo/utils/cookie-util'
 import APIClient from '@/_shared/infra/axios/APIClient'
 

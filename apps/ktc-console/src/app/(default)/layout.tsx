@@ -19,7 +19,7 @@ export default function Layout({
           <main>
             <Header />
             <SidebarTrigger />
-            <div className="mt-12 px-8">{children}</div>
+            <div className="mt-16 px-8">{children}</div>
           </main>
         </SidebarProvider>
       </SessionSyncProvider>

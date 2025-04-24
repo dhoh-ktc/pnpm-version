@@ -1,4 +1,4 @@
-import { IVpc } from '@/_core/entities/networking/vpc'
+import { IVpc } from '@/_core/entities/network/vpc/vpc'
 
 export interface ISubnetService {
   // fetchAll(projectId: string): Promise<IVpc[]>

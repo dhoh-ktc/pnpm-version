@@ -1,5 +1,5 @@
 import { repository } from '@/_core/repositories'
-import { IVpc, IVpcData, Vpc } from '@/_core/entities/networking/vpc'
+import { IVpc, IVpcData, Vpc } from '@/_core/entities/network/vpc/vpc'
 import { ISubnetService } from '@/_core/services/network/subnet/types'
 import { SubnetRepository } from '@/_core/repositories/network/subnet'
 

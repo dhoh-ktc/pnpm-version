@@ -1,7 +1,7 @@
-import { IVpc, IVpcData } from '@/_core/entities/networking/vpc/types'
+import { IVpc, IVpcData } from '@/_core/entities/network/vpc/vpc/types'
 import { DateUtil } from '@repo/utils/date-util'
-import { INetwork } from '@/_core/entities/networking/vpc/network/types'
-import { ISubnetPool } from '@/_core/entities/networking/vpc/subnetpool/types'
+import { INetwork } from '@/_core/entities/network/vpc/network/types'
+import { ISubnetPool } from '@/_core/entities/network/vpc/subnetpool/types'
 
 export class Vpc implements IVpc {
   id: string

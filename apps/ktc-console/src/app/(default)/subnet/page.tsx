@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@repo/ui/components/form/select'
-import { IVpc } from '@/_core/entities/networking/vpc'
+import { IVpc } from '@/_core/entities/network/vpc/vpc'
 import { SubnetService } from '@/_core/services/network/subnet/subnet'
 
 export default function Page() {

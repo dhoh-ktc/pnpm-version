@@ -48,7 +48,7 @@ const data = {
       title: 'NETWORK',
       url: '#',
       icon: SquareTerminal,
-      isActive: false,
+      isActive: true,
       items: [
         {
           title: 'VPC',
