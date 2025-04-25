@@ -32,11 +32,13 @@ export default function VMakeForm({
 }: React.ComponentPropsWithoutRef<'div'> & { vprops: VMakeFormProps }) {
   return (
     <div {...props}>
-      <form onSubmit={vprops.handleSubmit}>
+      <form className="flex flex-col gap-2 items-end" onSubmit={vprops.handleSubmit}>
         <Input {...vprops.name} placeholder="VPC 이름" />
         <Input {...vprops.cidr} placeholder="CIDR ex)10.10.0.0/16" />
         <Input {...vprops.description} placeholder="vpc 설명" />
-        <Button type="submit">VPC 만들기</Button>
+        <Button className="w-28" type="submit">
+          VPC 만들기
+        </Button>
       </form>
     </div>
   )

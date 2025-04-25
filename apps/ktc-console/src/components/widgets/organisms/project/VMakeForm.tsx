@@ -26,22 +26,24 @@ export default function VMakeForm({
   ...props
 }: React.ComponentPropsWithoutRef<'div'> & { vprops: VMakeFormProps }) {
   return (
-    <form onSubmit={vprops.handleSubmit}>
-      <div className="flex flex-col gap-6" {...props}>
-        <div className="grid gap-2">
-          <Label htmlFor="projName">프로젝트 이름</Label>
-          <Input id="projName" {...vprops.name} placeholder="프로젝트 이름(중복불가)" required />
-        </div>
-        <div className="grid gap-2">
-          <div className="flex items-center">
-            <Label htmlFor="projDescription">프로젝트 설명</Label>
+    <div className="w-[360px]">
+      <form onSubmit={vprops.handleSubmit}>
+        <div className="flex flex-col gap-4 items-end" {...props}>
+          <div className="grid gap-2 w-full">
+            <Label htmlFor="projName">프로젝트 이름</Label>
+            <Input id="projName" {...vprops.name} placeholder="프로젝트 이름(중복불가)" required />
           </div>
-          <Input id="projDescription" {...vprops.description} required />
+          <div className="grid gap-2 w-full">
+            <div className="flex items-center">
+              <Label htmlFor="projDescription">프로젝트 설명</Label>
+            </div>
+            <Input id="projDescription" {...vprops.description} required />
+          </div>
+          <Button type="submit" className="w-44">
+            생성하기
+          </Button>
         </div>
-        <Button type="submit" className="w-full">
-          생성하기
-        </Button>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }

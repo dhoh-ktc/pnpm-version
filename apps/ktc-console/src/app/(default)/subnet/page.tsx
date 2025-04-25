@@ -78,8 +78,9 @@ export default function Page() {
   }, [])
   return (
     <form onSubmit={handleSubmit}>
+      <h2 className="mb-2 text-xl font-bold">프로젝트 선택</h2>
       <Select onValueChange={handleChangeProject}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[240px]">
           <SelectValue placeholder="프로젝트 선택" />
         </SelectTrigger>
         <SelectContent>
@@ -91,8 +92,9 @@ export default function Page() {
         </SelectContent>
       </Select>
 
+      <h2 className="mt-4 text-xl font-bold">VPC 선택</h2>
       <Select onValueChange={handleChangeVpc}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[240px] mt-2">
           <SelectValue placeholder="VPC 선택" />
         </SelectTrigger>
         <SelectContent>
@@ -104,9 +106,12 @@ export default function Page() {
         </SelectContent>
       </Select>
 
-      <Input value={name} onChange={handleChangeName} placeholder="서브넷 이름" />
-      <Input value={cidr} onChange={handleChangeCIDR} placeholder="CIDR ex)10.1.1.0/24" />
-      <Button type="submit">서브넷 만들기</Button>
+      <h2 className="mt-4 text-xl font-bold">서브넷 생성</h2>
+      <div className="flex flex-col items-end gap-2 mt-2">
+        <Input value={name} onChange={handleChangeName} placeholder="서브넷 이름" />
+        <Input value={cidr} onChange={handleChangeCIDR} placeholder="CIDR ex)10.1.1.0/24" />
+        <Button type="submit">서브넷 만들기</Button>
+      </div>
     </form>
   )
 }
